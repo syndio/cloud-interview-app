@@ -1,0 +1,32 @@
+services:
+  gateway:
+    build: .
+    ports:
+      - "6540:6540"
+    volumes:
+      - .:/src
+    environment:
+      PORT: 6540
+    depends_on:
+      - employeesapi
+    command: reflex --all -r '\.go' -s -- sh -c "go run ./gateway/cmd/gateway/gateway.go"
+  employeesapi:
+    build: .
+    volumes:
+      - .:/src
+    environment:
+      PORT: 6541
+    depends_on:
+      - postgres
+      - redis
+    command: reflex --all -r '\.go' -s -- sh -c "go run ./employees/cmd/employeesapi/employeesapi.go"
+  redis:
+    image: redis
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: employees
+    volumes:
+      - ./employees/internal/employeesdb/init.sql:/docker-entrypoint-initdb.d/employeesdb.sql
