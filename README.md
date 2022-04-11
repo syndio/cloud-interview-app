@@ -1,7 +1,7 @@
 cloud-interview-app
 -----
 
-This repo contains a microservice application for use during various interviews at Syndio. Instructions for the interview will be provided seperatly.
+This repo contains a microservice application for use during various interviews at Syndio. Instructions for the interview will be provided separately.
 
 ### Architecture
 
