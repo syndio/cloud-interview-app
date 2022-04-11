@@ -5,7 +5,7 @@ This repo contains a microservice application for use during various interviews 
 
 ### Architecture
 
-A basic gateway api proxies requests to a restful json api serving employee data from Redis and PostgreSQL. The results from the employeesapi are cached in Redis after being retrieved from PostgreSQL.
+A basic gateway API proxies requests to a RESTful JSON api serving employee data from Redis and PostgreSQL. The results are cached in Redis after being retrieved from PostgreSQL.
 
 ```
 |-----------|      |---------------|
@@ -51,12 +51,15 @@ Go dependency information:
 
 ### Setup
 
-The project is configured for use with [docker compose](https://docs.docker.com/compose/) so you'll need to have docker running using something like [Docker for Mac](https://docs.docker.com/desktop/mac/install/).
+The project is configured for use with [Docker Compose](https://docs.docker.com/compose/).  You'll need to have the Docker daemon running, e.g. from [Docker for Mac](https://docs.docker.com/desktop/mac/install/) for macOS.
 
 1. Get the repo locally `git clone git@github.com:syndio/cloud-interview-app.git`
 2. Run `docker compose up -d --build` to start everything in the background.
+3. When you're done, run `docker compose down` to shut down running containers.
 
-You can view request/error logs for all services by running:
+### Access
+
+You can view logs for all services by running:
 
 `docker compose logs -f gateway employeesapi`
 
